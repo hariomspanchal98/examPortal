@@ -1,0 +1,15 @@
+.abc {
+  margin: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.innerAbc {
+  min-width: 600px;
+  width: 70%;
+}
+
+.next{
+    float: right;
+    margin-right: 15px;
+}
