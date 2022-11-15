@@ -12,7 +12,7 @@ export class AngularJsComponent implements OnInit {
 
   testData:any;
   i=0;
-  
+
   constructor(private http: HttpService,private fb:FormBuilder, private route:Router) { }
 
   form = this.fb.group({
@@ -29,10 +29,10 @@ export class AngularJsComponent implements OnInit {
     this.http.get().subscribe({next :(data)=>{
       this.testData= data;
       this.testData = this.testData?.tests[0];
-      
+
       // console.log(this.testData);
       // console.log(this.testData.questions.length);
-      
+
     }})
   }
 

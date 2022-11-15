@@ -1,4 +1,5 @@
 <div class="abc">
+  <div class="innerAbc">
     <table class="table table-bordered">
       <thead>
         <tr>
@@ -6,24 +7,32 @@
         </tr>
       </thead>
       <tbody>
-          <tr>
-              <td>
-                  <b>{{testData?.questions[i].questionText}}</b>
-                  <br>
-                  <br>
-                  <form [formGroup]="questionForm">
-                  <div *ngFor="let option of testData?.questions[i].options; let index = index"> 
-                      <input type="radio" id="index" formControlName="ans" id="testData.questions[i].questionText" [value]="index">
-                      <label style="margin-left: 10px;">{{option}}</label>
-                  </div>
-  
-                  <button class="btn" (click)="i=i-1" [disabled]="i==0">Prev</button>
-                  <button class="btn" (click)="log()" [hidden]="i==4">Next</button>
-                  <button class="btn" (click)="finishTest()" [hidden]="i!=4">Finish</button>
-              </form>
-              </td>
-          </tr>
+        <tr>
+          <td>
+            <b>{{testData?.questions[i].questionText}}</b>
+            <br>
+            <br>
+            <form [formGroup]="questionForm">
+              <div *ngIf="testData?.questions[i].correctOptionIndex.length < 2 || testData?.questions[i].correctOptionIndex.length == null">
+                <div *ngFor="let option of testData?.questions[i].options; let index = index">
+                  <input type="radio" formControlName="ans" id="testData.questions[i].questionText" [value]="index">
+                  <label style="margin-left: 10px;">{{option}}</label>
+                </div>
+              </div>
+              <div *ngIf="testData?.questions[i].correctOptionIndex.length > 1">
+                <div *ngFor="let option of testData?.questions[i].options; let index = index">
+                  <input type="checkbox" formControlName="ans" id="testData.questions[i].questionText" [value]="index">
+                  <label style="margin-left: 10px;">{{option}}</label>
+                </div>
+              </div>
+              <hr>
+              <button class="btn btn-danger" (click)="i=i-1" [disabled]="i==0">Prev</button>
+              <button class="btn btn-primary next" (click)="log()" [hidden]="i==4">Next</button>
+              <button class="btn btn-success next" (click)="finishTest()" [hidden]="i!=4">Finish</button>
+            </form>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>
-  
+</div>
